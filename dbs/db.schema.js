@@ -25,7 +25,6 @@ var propertySchema = new Schema({
 });
 
 var userSchema = new Schema({
-    _id: String,
     email: String,
     password: String,
     firstName: String,
@@ -41,7 +40,7 @@ propertySchema.methods.findPropertyByUser = function (prop) {
     return this.model('Property').find({ city: this.address.city }, prop);
 }
 
-Story.
+/* Story.
     findOne({ title: 'Casino Royale' }).
     populate('author').
     exec(function (err, story) {
@@ -67,7 +66,7 @@ Story.findOneAndRemove({ title: 'S_A1' }).where("author").ne(null).
         story1.author.save()
     })
 
-
+ */
 
 module.exports.Property = mongoose.model('Property', propertySchema);
 module.exports.Unit = mongoose.model('Unit', unitSchema);
