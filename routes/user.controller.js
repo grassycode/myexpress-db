@@ -1,6 +1,7 @@
 var express = require('express');
 var dbSchema = require('./../dbs/db.schema')
 var dbHelper = require('./../dbs/db.helper')
+var common = require('./../common/common.middleware')
 
 var router = express.Router();
 /**
@@ -13,7 +14,7 @@ router.post('/register', [dbHelper.validateUser, dbHelper.addUser], function (re
     res.send();
 })
 
-router.post('/login',[dbHelper.validateCredential], function(req, res, next){
+router.post('/login',[dbHelper.validateCredential, common.verfiySession], function(req, res, next){
     res.send();
 })
 

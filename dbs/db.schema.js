@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var unitSchema = new Schema({
-    _id: Schema.Types.ObjectId,
     num_rooms: Number,
     kitchen: Number,
     washroom: Number,
@@ -11,7 +10,6 @@ var unitSchema = new Schema({
 });
 
 var propertySchema = new Schema({
-    _id: Schema.Types.ObjectId,
     address: {
         streetNo: String,
         addressLine1: String,
@@ -21,6 +19,7 @@ var propertySchema = new Schema({
         country: String,
         postalCode: String
     },
+    userId: {type: Schema.Types.ObjectId, ref: 'User'},
     units: [{ type: Schema.Types.ObjectId, ref: 'Unit' }]
 });
 
@@ -36,37 +35,14 @@ var userSchema = new Schema({
     properties: [{ type: Schema.Types.ObjectId, ref: 'Property' }]
 });
 
-propertySchema.methods.findPropertyByUser = function (prop) {
-    return this.model('Property').find({ city: this.address.city }, prop);
-}
+// Story.findOneAndRemove({ title: 'S_A1' }).where("author").ne(null).
+//     populate('author').
+//     exec(function (err, story1) {
+//         console.log(story1)
+//         story1.author.stories.pop(story1._id);
+//         story1.author.save()
+//     })
 
-/* Story.
-    findOne({ title: 'Casino Royale' }).
-    populate('author').
-    exec(function (err, story) {
-        if (err) return handleError(err);
-        console.log('The author is %s', story.author.name, story.author.age);
-    });
-
-Story.findOne({ title: 'S1' }, function (error, story) {
-    if (error) {
-        return handleError(error);
-    }
-    story.author = author;
-    story.save();
-    console.log(story.author.name); // prints "Ian Fleming"
-});
-
-
-Story.findOneAndRemove({ title: 'S_A1' }).where("author").ne(null).
-    populate('author').
-    exec(function (err, story1) {
-        console.log(story1)
-        story1.author.stories.pop(story1._id);
-        story1.author.save()
-    })
-
- */
 
 module.exports.Property = mongoose.model('Property', propertySchema);
 module.exports.Unit = mongoose.model('Unit', unitSchema);
