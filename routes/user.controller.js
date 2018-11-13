@@ -18,6 +18,12 @@ router.post('/login',[dbHelper.validateCredential, common.verfiySession], functi
     res.send();
 })
 
+router.post('/tenant/register', function (req, res, next) {
+    res.send();
+})
+
+router.get()
+
 /**
 
  * Register user with properties

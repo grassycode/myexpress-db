@@ -9,24 +9,36 @@ var router = express.Router();
  * Register user with first property
  */
 
-router.post('/add',[dbHelper.addProperty], function (req, res, next) {
+router.post('/add/property',[dbHelper.addProperty], function (req, res, next) {
     res.send()
 })
 
-router.post('/add-unit',[common.verfiySession ,dbHelper.addunit], function(req, res, next) {
+router.post('/add/add-unit',[common.verfiySession ,dbHelper.addunit], function(req, res, next) {
     res.json({check:'ok'}).send()
 })
 
-router.post('/address-search', function (req, res, next) {
-    var Property = dbSchema.Property;
-    var property = new Property(req.body.property);
-    property.findPropertyByUser(function (err, props) {
-        res.json(props);
-        res.send();
-    });
-
-    // console.log(t)
-    // JSON.stringify(t);
-    //res.jsonp(JSON.stringify(t));
+router.post('/add/properties', function(req, res, next) {
+    res.send();
 });
+
+router.get('/{property}/units', function(req, res, next) {
+    res.send();
+})
+
+router.get('/properties', function(req, res, next){
+    res.send();
+})
+
+router.get('/tenants', function(req, res, next){
+    res.send();
+})
+
+router.get('/value', function(req, res, next){
+    res.send();
+})
+
+router.get('/expenses', function(req, res, next){
+    res.send();
+})
+
 module.exports = router;
